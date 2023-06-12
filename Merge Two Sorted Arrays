@@ -1,0 +1,18 @@
+#include <bits/stdc++.h>
+
+vector<int> ninjaAndSortedArrays(vector<int>& arr1, vector<int>& arr2, int m, int n) {
+	vector<int>ans(m+n,0);
+	int i=0;
+	for( i=0;i<m;i++)
+	{
+		ans[i]=arr1[i];
+	}
+	int k=0;
+		for(int  j=i;j<m+n;j++)
+	{
+		ans[j]=arr2[k];
+		k++;
+	}
+	sort(ans.begin(),ans.end());
+	return ans;
+}
