@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+
+int findMajorityElement(int a[], int n) {
+	// Write your code here.
+       int point =a[0];
+      int count=0;
+      int count1=0;
+      for(int i=0;i<n;i++){
+          if(count==0){
+              count=1;
+              point=a[i];
+          }
+         else if(a[i]==point){
+              count++;
+          }
+          else if(a[i]!=point){
+              count--;
+              
+          }
+      }
+      
+      for(int i=0;i<n;i++){
+          if(a[i]==point){
+              count1++;
+          }
+      }
+      
+      if(count1>(n/2)) return point;
+    
+
+    return -1;
+        
+}
