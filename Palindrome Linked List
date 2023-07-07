@@ -1,0 +1,57 @@
+bool isPalindrome(LinkedListNode<int> *head) {
+    if (head == nullptr || head->next == nullptr)
+        return true;
+    
+    LinkedListNode<int> *slow = head;
+    LinkedListNode<int> *fast = head;
+    
+    // Finding the middle node of the linked list
+    while (fast->next != nullptr && fast->next->next != nullptr) {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    
+    // Reversing the second half of the linked list
+    LinkedListNode<int> *secondHalf = slow->next;
+    slow->next = nullptr;
+    LinkedListNode<int> *prev = nullptr;
+    LinkedListNode<int> *curr = secondHalf;
+    LinkedListNode<int> *next = nullptr;
+    
+    while (curr != nullptr) {
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+    }
+    
+    secondHalf = prev;
+    
+    // Comparing the first half with the reversed second half
+    LinkedListNode<int> *p1 = head;
+    LinkedListNode<int> *p2 = secondHalf;
+    
+    while (p1 != nullptr && p2 != nullptr) {
+        if (p1->data != p2->data)
+            return false;
+        p1 = p1->next;
+        p2 = p2->next;
+    }
+    
+    // Restoring the original linked list by reversing the second half again
+    prev = nullptr;
+    curr = secondHalf;
+    next = nullptr;
+    
+    while (curr != nullptr) {
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+    }
+    
+    secondHalf = prev;
+    slow->next = secondHalf;
+    
+    return true;
+}
