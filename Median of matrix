@@ -1,0 +1,13 @@
+int median(vector<vector<int>> &matrix, int m, int n) {
+    vector<int>check;
+    for(int i=0;i<matrix.size();i++)
+    {
+        for(int j=0;j<matrix[0].size();j++)
+        {
+            check.push_back(matrix[i][j]);
+        }
+    }
+    sort(check.begin(),check.end());
+    int mid=(m*n)/2;
+    return check[mid];
+}A
